@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Marina Grand Hotel - Management Portal</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark" aria-hidden="true">M</span>
+    <div>
+      <h1>Marina Grand Hotel</h1>
+      <p>Front desk management portal · Chennai</p>
+    </div>
+  </div>
+  <nav aria-label="Main">
+    <a href="#rooms">Rooms</a>
+    <a href="#book">New booking</a>
+    <a href="#bookings">Bookings</a>
+  </nav>
+</header>
+
+<main>
+  <section class="stats" aria-label="Today at a glance">
+    <div class="stat"><span class="stat-label">Total rooms</span><strong id="statTotal">0</strong></div>
+    <div class="stat"><span class="stat-label">Occupied</span><strong id="statOccupied">0</strong></div>
+    <div class="stat"><span class="stat-label">Available</span><strong id="statAvailable">0</strong></div>
+    <div class="stat"><span class="stat-label">Revenue from current stays</span><strong id="statRevenue">₹0</strong></div>
+  </section>
+
+  <div class="layout">
+    <section id="rooms" class="panel">
+      <div class="panel-head">
+        <h2>Rooms</h2>
+        <div class="filters" role="group" aria-label="Filter rooms">
+          <button class="chip active" data-filter="all" type="button">All</button>
+          <button class="chip" data-filter="available" type="button">Available</button>
+          <button class="chip" data-filter="occupied" type="button">Occupied</button>
+          <button class="chip" data-filter="cleaning" type="button">Cleaning</button>
+        </div>
+      </div>
+      <div class="room-grid" id="roomGrid"></div>
+    </section>
+
+    <section id="book" class="panel">
+      <h2>New booking</h2>
+      <form id="bookingForm" novalidate>
+        <label class="field">Guest name
+          <input type="text" name="guest" autocomplete="off">
+          <span class="error"></span>
+        </label>
+        <label class="field">Mobile number
+          <input type="tel" name="phone" inputmode="numeric" maxlength="10" placeholder="10 digits">
+          <span class="error"></span>
+        </label>
+        <label class="field">Room
+          <select name="room"></select>
+          <span class="error"></span>
+        </label>
+        <div class="two">
+          <label class="field">Check-in
+            <input type="date" name="checkin">
+            <span class="error"></span>
+          </label>
+          <label class="field">Check-out
+            <input type="date" name="checkout">
+            <span class="error"></span>
+          </label>
+        </div>
+        <label class="field">Number of guests
+          <input type="number" name="guests" min="1" max="4" value="1">
+          <span class="error"></span>
+        </label>
+        <p class="total" id="totalLine">Select a room and dates to see the total.</p>
+        <button class="btn btn-primary" type="submit">Confirm booking</button>
+      </form>
+    </section>
+  </div>
+
+  <section id="bookings" class="panel">
+    <div class="panel-head">
+      <h2>Bookings</h2>
+      <button class="btn btn-ghost" id="resetBtn" type="button">Reset demo data</button>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Booking ID</th><th>Guest</th><th>Room</th><th>Stay</th><th>Total</th><th>Status</th><th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="bookingBody"></tbody>
+      </table>
+    </div>
+    <p class="empty" id="emptyMsg" hidden>No bookings yet. Use the form above to add the first one.</p>
+  </section>
+</main>
+
+<footer class="footer">Sample project for practice. Data is saved only in this browser.</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
